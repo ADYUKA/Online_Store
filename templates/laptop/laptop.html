@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laptops</title>
+</head>
+<body>
+<ul>
+    {% for i in laptop_key %}
+        <li>
+            <h1>{{ i.model }}</h1>
+            <img src="{{ i.image.url }}" alt="">
+            <p><strong>{{ i.description }}</strong></p>
+            <p>{{ i.laptop_types }}</p>
+            <p>{{ i.cost }}</p>
+            <p>{{ i.release_year }}</p>
+            <p>{{ i.condition }}</p>
+            <p>{{ i.created_at }}</p>
+
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
