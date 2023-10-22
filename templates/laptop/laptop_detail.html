@@ -1,0 +1,18 @@
+{% include 'laptop/header.html' %}
+<center>
+<div class="card" style="width: 18rem;">
+  <img src="{{ laptop_id.image.url }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ laptop_id.model }}</h5>
+    <p class="card-text">{{ laptop_id.description }}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ laptop_id.laptop_types }}</li>
+    <li class="list-group-item">{{ laptop_id.cost }}</li>
+    <li class="list-group-item">{{ laptop_id.release_year }}</li>
+    <li class="list-group-item">{{ laptop_id.condition }}</li>
+    <li class="list-group-item">{{ laptop_id.created_at }}</li>
+  </ul>
+</div>
+</center>
+{% include 'laptop/footer.html' %}

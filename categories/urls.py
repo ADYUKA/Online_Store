@@ -6,5 +6,6 @@ urlpatterns = [
     path('now_date/', views.NowDateView),
     path('goodbye/', views.ByeView),
     path('laptop/', views.LaptopListView),
+    path('laptop_detail/<int:id>/', views.LaptopDetailView),
 
 ]

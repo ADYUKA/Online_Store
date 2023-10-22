@@ -1,7 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 import datetime
 from . import models
+
+
+def LaptopDetailView(request, id):
+    laptop_id = get_object_or_404(models.Laptop, id=id)
+    return render(request, 'laptop/laptop_detail.html', {'laptop_id': laptop_id})
 
 
 def LaptopListView(request):
