@@ -1,16 +1,16 @@
-{% include 'laptop/header.html' %}
+{% extends 'layouts/index.html' %}
 
-<div class="card_block">
-{% for i in laptop_key %}
-<div class="card" style="width: 18rem;">
-  <img src="{{ i.image.url }}" class="card-img-top" alt="laptop">
-  <div class="card-body">
-    <h5 class="card-title">{{ i.model }}</h5>
-    <p class="card-text">{{ i.cost }}</p>
-    <a href="/laptop_detail/{{ i.id }}" class="btn btn-primary">Подробнее</a>
-  </div>
-</div>
-{% endfor %}
-</div>
-
-{% include 'laptop/footer.html' %}
+{% block content %}
+    <div class="card_block">
+        {% for i in laptop_key %}
+        <div class="card" style="width: 18rem;">
+            <img src="{{ i.image.url }}" class="card-img-top" alt="laptop">
+            <div class="card-body">
+                <h5 class="card-title">{{ i.model }}</h5>
+                <p class="card-text">{{ i.cost }}</p>
+                <a href="/laptop_detail/{{ i.id }}" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

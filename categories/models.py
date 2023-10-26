@@ -1,23 +1,24 @@
 from django.db import models
 
+from categories.constants import LAPTOP_TYPES, CONDITION
 
-class Laptop(models.Model):
+
+class Hashtag(models.Model):
+    title = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.title
 
     class Meta:
-        verbose_name = 'Ноутбук'
-        verbose_name_plural = 'Ноутбуки'
+        verbose_name = "Хэштег"
+        verbose_name_plural = "Хэштеги"
 
-    LAPTOP_TYPES = (
-        ('Офисные','Офисные'),
-        ('Игровые', 'Игровые'),
-        ('Ультрабуки', 'Ультрабуки')
-    )
 
-    CONDITION = (
-        ('Б\У', 'Б\У'),
-        ('Новый', 'Новый')
-    )
+class Laptop(models.Model):
+    '''References'''
+    hashtags = models.ManyToManyField(Hashtag)
 
+    '''Base fields'''
     model = models.CharField(max_length=100, verbose_name="Модель ноутбука", null=True)
     image = models.ImageField(upload_to='', verbose_name="Загрузите фото", null=True)
     description = models.TextField(blank=True, null=True, verbose_name="Добавьте описание")
@@ -31,3 +32,7 @@ class Laptop(models.Model):
     def __str__(self):
         return (f"Модель: {self.model}\n"
                 f"Цена: {self.cost}")
+
+    class Meta:
+        verbose_name = 'Ноутбук'
+        verbose_name_plural = 'Ноутбуки'

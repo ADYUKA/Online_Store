@@ -4,32 +4,35 @@ import datetime
 from . import models
 
 
-def LaptopDetailView(request, id):
-    laptop_id = get_object_or_404(models.Laptop, id=id)
-    return render(request, 'laptop/laptop_detail.html', {'laptop_id': laptop_id})
+def laptop_detail_view(request, id):
+    if request.method == 'GET':
+        laptop = get_object_or_404(models.Laptop, id=id)
+        contex_data = {
+            'laptop': laptop
+        }
+        return render(request, 'laptop/laptop_detail.html', context=contex_data)
 
 
-def LaptopListView(request):
-    laptop_value = models.Laptop.objects.all()
-    return render(request, 'laptop/laptop.html', {'laptop_key': laptop_value})
+def laptop_list_view(request):
+    if request.method == 'GET':
+        laptop_value = models.Laptop.objects.all()
+        context_data = {
+            'laptop_key': laptop_value
+        }
+        return render(request, 'laptop/laptop.html', context=context_data)
 
 
-# def LaptopListView(request):
-#     laptop_value = models.Laptop.objects.all()
-#     html_file_name = 'laptop/laptop.html'
-#     context = {
-#         'laptop_key': laptop_value
-#     }
-#     return render(request, html_file_name, context)
-
-def HelloView(request):
-    return HttpResponse("<h1>Hello! It's my first project</h1>")
+def hello_view(request):
+    if request.method == 'GET':
+        return HttpResponse("<h1>Hello! It's my first project</h1>")
 
 
-def NowDateView(request):
-    now_date = datetime.datetime.now().replace(microsecond=0)
-    return HttpResponse(f"<h1>Now date: {now_date} </h1>")
+def now_date_view(request):
+    if request.method == 'GET':
+        now_date = datetime.datetime.now().replace(microsecond=0)
+        return HttpResponse(f"<h1>Now date: {now_date} </h1>")
 
 
-def ByeView(request):
-    return HttpResponse("<h1>Goodbye my friend;)</h1>")
+def bye_view(request):
+    if request.method == 'GET':
+        return HttpResponse("<h1>Goodbye my friend;)</h1>")
