@@ -36,3 +36,5 @@ class Laptop(models.Model):
     class Meta:
         verbose_name = 'Ноутбук'
         verbose_name_plural = 'Ноутбуки'
+
+
