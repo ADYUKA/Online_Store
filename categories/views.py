@@ -19,7 +19,8 @@ def laptop_list_view(request):
     if request.method == 'GET':
         laptop_value = models.Laptop.objects.all()
         context_data = {
-            'laptop_key': laptop_value
+            'laptop_key': laptop_value,
+            'user': request.user
         }
         return render(request, 'laptop/laptop.html', context=context_data)
 
