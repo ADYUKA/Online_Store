@@ -1,24 +1,26 @@
-{extends 'layouts/index.html'}
+{% extends 'layouts/index.html' %}
 
 {% block content %}
-    <div class="card" style="width: 18rem;">
-        <img src="{{ laptop.image.url }}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{ laptop.model }}</h5>
-            <p class="card-text">{{ laptop.description }}</p>
-            {% for hashtag in laptop.hashtags.all %}
-                <p>{{ hashtag.title }}</p>
-            {% endfor %}
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{ laptop.laptop_types }}</li>
-            <li class="list-group-item">{{ laptop.cost }}</li>
-            <li class="list-group-item">{{ laptop.release_year }}</li>
-            <li class="list-group-item">{{ laptop.condition }}</li>
-            <li class="list-group-item">{{ laptop.created_at }}</li>
+    <div class="container">
+        <div class="card" style="width: 18rem; margin: 0 auto">
+            <img src="{{ laptop.image.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ laptop.model }}</h5>
+                <p class="card-text">{{ laptop.description }}</p>
+                {% for hashtag in laptop.hashtags.all %}
+                    <p>{{ hashtag.title }}</p>
+                {% endfor %}
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ laptop.laptop_types }}</li>
+                <li class="list-group-item">{{ laptop.cost }}</li>
+                <li class="list-group-item">{{ laptop.release_year }}</li>
+                <li class="list-group-item">{{ laptop.condition }}</li>
+                <li class="list-group-item">{{ laptop.created_at }}</li>
 
-            <p>Автор: {{user.username}}</p>
-        </ul>
+                <p>Автор: {{user.username}}</p>
+            </ul>
+        </div>
     </div>
 {% endblock %}
 

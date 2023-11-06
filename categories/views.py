@@ -1,7 +1,9 @@
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 import datetime
 from . import models
+from .constants import PAGINATION_LIMIT
 from .forms import CreateLaptopForm
 from .models import Laptop
 
@@ -17,10 +19,26 @@ def laptop_detail_view(request, id):
 
 def laptop_list_view(request):
     if request.method == 'GET':
+        search_text = request.GET.get('search')
         laptop_value = models.Laptop.objects.all()
+        page = int(request.GET.get('page', 1))
+
+        max_page = laptop_value.__len__()/PAGINATION_LIMIT
+        if round(max_page) < max_page:
+            max_page = round(max_page) + 1
+        else:
+            max_page = round(max_page)
+
+        laptop_value = laptop_value[PAGINATION_LIMIT * (page - 1):PAGINATION_LIMIT * page]
+
+        if search_text:
+            ''' startswith, endswith, icontains '''
+            laptop_value = laptop_value.filter(Q(model__icontains=search_text) | Q(laptop_types__icontains=search_text))
+
         context_data = {
             'laptop_key': laptop_value,
-            'user': request.user
+            'user': request.user,
+            'pages': range(1, max_page + 1)
         }
         return render(request, 'laptop/laptop.html', context=context_data)
 

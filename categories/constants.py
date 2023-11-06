@@ -8,3 +8,5 @@ CONDITION = (
     ('Б\У', 'Б\У'),
     ('Новый', 'Новый')
 )
+
+PAGINATION_LIMIT = 4
